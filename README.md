@@ -1,8 +1,9 @@
 # Read Me - Evento
 
-# 1. Clone the project
+# 1. Clone the project and install the dependencies
 ```
 $ git clone github_url_of_the_project
+$ npm install
 ```
 
 
