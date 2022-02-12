@@ -38,3 +38,5 @@ Ex:
 ```
 $ events = await Event.findAll()
 ```
+
+Alternatively, you can use a tool like pgadmin.
