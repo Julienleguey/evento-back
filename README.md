@@ -30,7 +30,7 @@ Go to `http://localhost:8000/ping` to check it's working.
 # 5. Run the console
 This is a repl server with a built-in async/await. All the models are already loaded.
 ```
-$ NODE_ENV=development npm run console
+$ npm run console
 ```
 
 You can now interact directly with your database.
