@@ -14,8 +14,19 @@ module.exports = (sequelize, DataTypes) => {
     author: {
       allowNull: false,
       type: DataTypes.STRING,
+      validate: {
+        notEmpty: true,
+      },
     },
-    message: DataTypes.STRING(140),
+    message: {
+      type: DataTypes.STRING(140),
+      validate: {
+        notEmpty: true,
+        notTooLong(value) {
+          if (value.length > 140) throw new Error();
+        },
+      },
+    }
   }, {
     sequelize,
     modelName: 'Comment',

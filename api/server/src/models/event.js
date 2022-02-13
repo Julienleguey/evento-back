@@ -13,16 +13,56 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       allowNull: false,
       type: DataTypes.STRING(60),
+      validate: {
+        notEmpty: true,
+        notTooLong(value) {
+          if (value.length > 60) throw new Error();
+        },
+      },
     },
     date: {
       allowNull: false,
       type: DataTypes.DATE,
+      validate: {
+        isDate: true,
+      }
     },
-    description: DataTypes.STRING(300),
+    description: {
+      type: DataTypes.STRING(300),
+      validate: {
+        notTooLong(value) {
+          if (value.length > 300) throw new Error();
+        },
+      }
+    },
     email: {
       allowNull: false,
-      type: DataTypes.STRING
-    }
+      type: DataTypes.STRING,
+      validate: {
+        isEmail: true,
+      },
+    },
+    state: {
+      type: DataTypes.VIRTUAL(DataTypes.STRING, ["date"]),
+      get() {
+        let state;
+        const today = new Date();
+        const inTenDays = new Date();
+        const tenDaysAgo = new Date();
+        inTenDays.setDate(inTenDays.getDate() + 10);
+        tenDaysAgo.setDate(tenDaysAgo.getDate() - 10);
+
+        if (this.get("date") > inTenDays) state = "farFuture";
+        if (this.get("date") < inTenDays && this.get("date") > today) state = "closeFuture";
+        if (this.get("date") < today && this.get("date") > tenDaysAgo) state = "closePast";
+        if (this.get("date") < tenDaysAgo) state = "farPast";
+
+        return state;
+      },
+      set() {
+        throw new Error("Do not try to set the `state` value!");
+      },
+    },
   }, {
     sequelize,
     modelName: 'Event',

@@ -6,12 +6,16 @@
   "scripts": {
     "dev": "NODE_ENV=development nodemon ./api/index.js",
     "start": "node ./api/index.js",
-    "console": "NODE_ENV=development node --experimental-repl-await console.js"
+    "console": "NODE_ENV=development node --experimental-repl-await console.js",
+    "seed:create": "NODE_ENV=development npx sequelize-cli db:seed:all",
+    "seed:undo": "NODE_ENV=development npx sequelize-cli db:seed:undo:all"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.2",
     "path": "^0.12.7",
