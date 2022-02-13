@@ -28,7 +28,7 @@ $ npm run seed:create
 ```
 
 
-## 4. Run the project in development
+## 5. Run the project in development
 The .env.development doesn't contain any sensible information and is not currently ignored.
 ```
 $ npm run dev
@@ -36,7 +36,7 @@ $ npm run dev
 Go to `http://localhost:8000/ping` to check it's working.
 
 
-## 5. Run the console
+## 6. Run the console
 This is a repl server with a built-in async/await. All the models are already loaded.
 ```
 $ npm run console
